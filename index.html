@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<link rel="stylesheet" href="softEyePackage.css">
+        <title>JCaptcha FreeAuth</title>
+        <script type="text/javascript">
+			//function showMyNotif() {
+				
+			//}
+			
+			//var sw = document.cookie("SW");
+            function showNotification() {
+                if (!("Notification" in window)) {
+                    alert("Desktop notifications are not supported by this browser. Try another.");
+                    return;
+                } else if (Notification.permission === "granted") {
+                    var myNotification = new Notification("CLICK HERE TO VERIFY", {
+                        icon: "/replit_logo_icon_168861.png",
+                        body: "CLICK HERE TO VERIFY"
+                    });
+                    myNotification.onclick = function () {
+                        window.open("https://chatterio.finnaminope.repl.co/main.html");
+						myNotification.close()
+                    };
+
+                } else if (Notification.permission !== 'denied') {
+					console.log("This captcha WILL not work without notifications enabled. Please enable notifications")
+					alert("This captcha WILL not work without notifications enabled. Please enable notifications")
+                    Notification.requestPermission(function (userPermission) {
+                        if (userPermission === "granted") {
+                            var myNotification = new Notification("CLICK HERE TO VERIFY", {
+                                icon: "/replit_logo_icon_168861.png",
+                                body: "CLICK HERE TO VERIFY"
+                            });
+                            myNotification.onclick = function () {
+                                window.open("https://chatterio.finnaminope.repl.co/main.html");
+								myNotification.close()
+                            };
+						}	else if (Notification.permission === 'denied') {
+								console.log("This captcha WILL not work without notifications enabled. Please enable notifications")
+								alert("This captcha WILL not work without notifications enabled. Please enable notifications")
+						}
+                    	
+                    });
+                }
+            }
+        </script>
+    </head>
+    <body>
+		<h1>JCaptcha FreeAuth</h1>
+		<p>How to Verify</p>
+		<p>1. Allow notifications</p>
+		<p>IF NO MENU APPEARS PRESS THIS BUTTON: </p>
+		<button type="button" onclick="showNotification()">Retry notification send</button>
+		<p>2. Click the verify me notification</p>
+    </body>
+</html>
